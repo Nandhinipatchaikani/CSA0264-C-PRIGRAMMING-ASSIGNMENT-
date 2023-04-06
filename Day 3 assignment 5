@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+
+#define ASCII_SIZE 256
+
+int main()
+{
+    char string[100];
+    int frequency[ASCII_SIZE] = {0};
+    int i, max_frequency = 0;
+    char max_char;
+
+    printf("Enter a string: ");
+    scanf("%[^\n]", string);
+
+
+    for(i = 0; string[i] != '\0'; i++)
+    {
+        frequency[string[i]]++;
+    }
+
+   
+    for(i = 0; i < ASCII_SIZE; i++)
+    {
+        if(frequency[i] > max_frequency)
+        {
+            max_frequency = frequency[i];
+            max_char = i;
+        }
+    }
+
+    printf("The highest frequency character in the string is '%c' with frequency %d.\n", max_char, max_frequency);
+
+    return 0;
+}
