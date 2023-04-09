@@ -1,0 +1,36 @@
+import math
+
+
+class Shape:
+    def __init__(self, shape_type, radius=None, length=None, width=None):
+        self.shape_type = shape_type
+        self.radius = radius
+        self.length = length
+        self.width = width
+
+    def area(self):
+        if self.shape_type == "circle":
+            return math.pi * self.radius ** 2
+        elif self.shape_type == "rectangle":
+            return self.length * self.width
+        else:
+            return None
+
+shape_type = input("Enter shape type (circle or rectangle): ")
+
+if shape_type == "circle":
+    radius = float(input("Enter radius: "))
+    shape = Shape(shape_type, radius=radius)
+elif shape_type == "rectangle":
+    length = float(input("Enter length: "))
+    width = float(input("Enter width: "))
+    shape = Shape(shape_type, length=length, width=width)
+else:
+    print("Invalid shape type")
+    exit()
+
+area = shape.area()
+if area is not None:
+    print(f"The area of the {shape_type} is {area:.2f}")
+else:
+    print("Invalid shape dimensions")
