@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+#define ALPHABET_SIZE 26
+
+int main() {
+    FILE *input_file, *output_file;
+    char c;
+    int count[ALPHABET_SIZE] = {0};
+    int index;
+
+    input_file = fopen("data.txt", "r");
+    if (input_file == NULL) {
+        printf("Error opening input file\n");
+        exit(1);
+    }
+
+  
+    while ((c = fgetc(input_file)) != EOF) {
+        if (isalpha(c)) { 
+            index = tolower(c) - 'a'; 
+            count[index]++;
+        }
+    }
+
+    
+    fclose(input_file);
+
+   
+    output_file = fopen("statistics.txt", "w");
+    if (output_file == NULL) {
+        printf("Error opening output file\n");
+        exit(1);
+    }
+
+    
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        fprintf(output_file, "%c: %d\n", 'a' + i, count[i]);
+    }
+
+   
+    fclose(output_file);
+
+    return 0;
+}
